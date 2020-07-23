@@ -44,3 +44,7 @@ WHERE name LIKE '%man %';
 SELECT * FROM products
 WHERE name LIKE '_e%';
 -- above gives us 2nd character is "e" and anything after because of %
+
+SELECT * FROM products
+WHERE StockLevel BETWEEN 500 AND 1200
+Order By price, StockLevel DESC;

@@ -1,6 +1,6 @@
 
 -- find all products--
-SELECT * FROM products
+SELECT * FROM products;
 
 -- find all products that cost $1400
 SELECT * FROM products
@@ -32,24 +32,27 @@ WHERE FirstName LIKE 'j%';
 
 -- find all Macbooks --
 SELECT * FROM products
-WHERE Name LIKE 'MacBook%'; 
+WHERE Name = 'MacBook'; 
 
 -- find all products that are on sale
 SELECT * FROM products
 WHERE OnSale = 1; 
 
 -- find the average price of all products --
-SELECT AVG(Price)
+SELECT ROUND(AVG(Price), 2)
 FROM products;
 
 -- find all Geek Squad employees who don't have a middle initial --
+SELECT LastName, FirstName
+FROM employees
+WHERE Title = 'Geek Squad' AND MiddleInitial is NULL OR MiddleInitial = '';
 
 -- find all products from the products table whose stock level is in the range of 500 to 1200. 
 -- Order by Price from least to greatest.
 
-SELECT Name, StockLevel FROM products
-WHERE StockLevel BETWEEN 500 to 1200
-Order By price;
+SELECT * FROM products
+WHERE StockLevel BETWEEN 500 AND 1200
+Order By price, StockLevel DESC;
 
 -- ?? using the products table and the categories table, return the product name and the category name
 SELECT p.name AS 'Product Name', c.name AS 'Category Name'
