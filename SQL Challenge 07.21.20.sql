@@ -54,11 +54,12 @@ SELECT * FROM products
 WHERE StockLevel BETWEEN 500 AND 1200
 Order By price, StockLevel DESC;
 
--- ?? using the products table and the categories table, return the product name and the category name
-SELECT p.name AS 'Product Name', c.name AS 'Category Name'
+-- select all the computers, using the products table and the categories table, return the product name and the category name
+SELECT p.Name AS 'Product Name', c.Name AS 'Category Name'
 FROM products as p
 INNER JOIN categories as c
-ON products.CategoryID = categories.CategoryID AND categories.name = 'computer';
+ON p.CategoryID = c.CategoryID 
+WHERE c.CategoryID = 1;
 
 -- find all product names, product prices, and products ratings that have a rating of 5
 SELECT p.name AS 'Product Name', p.Price AS 'Price', r.Rating AS Rating
@@ -94,3 +95,10 @@ order by r. rating Limit 1;
 
 /* Your goal is to write a query that serves as an employee sales report.
 This query should return the employeeID, the employee's first and last name, the name of each product, how many of that product they sold */
+SELECT e.EmployeeID, e.FirstName, e.LastName, p.Name, SUM(s.Quantity) AS Quantity, s.Date
+From Sales as s
+Inner Join employees as e
+On e.EmployeeID = s.EmployeeID
+INNER Join products as p
+On p.ProductID = s.ProductID
+GROUP BY e.EmployeeID, e.FirstName, e.LastName, p.ProductID, p.Name, s.Date;

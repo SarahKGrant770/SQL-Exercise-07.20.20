@@ -48,3 +48,8 @@ WHERE name LIKE '_e%';
 SELECT * FROM products
 WHERE StockLevel BETWEEN 500 AND 1200
 Order By price, StockLevel DESC;
+
+SELECT SalesID, sales.ProductID, Quantity, products.ProductID, name, Price
+From sales
+INNER JOIN products
+ON sales.ProductID = products.ProductID;
